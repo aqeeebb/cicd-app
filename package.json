@@ -1,5 +1,5 @@
 {
-  "name": "cicd-app",
+  "name": "cicd-practice-app",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
