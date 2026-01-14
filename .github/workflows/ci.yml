@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  build-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,10 +14,10 @@ jobs:
 
       # ---------- CI ----------
       - name: Build Docker image
-        run: docker build -t cicd-app:latest .
+        run: docker build -t cicd-app .
 
       # ---------- CD ----------
-      - name: Deploy Docker container to WSL
+      - name: Deploy to server
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
@@ -29,5 +29,6 @@ jobs:
             docker run -d \
               --name cicd-app \
               -p 3000:3000 \
-              cicd-app:latest
+              cicd-app
           "
+
